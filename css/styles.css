@@ -1,7 +1,7 @@
 html {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    font-size: 62.5%;
+    font-size: 80%;
 }
   
 *,
@@ -13,12 +13,44 @@ html {
   
 body {
   font-family: 'Montserrat', sans-serif;
-  background-color: black;
+  background:url('../img/bg.jpg');
+  background-size: 100%;
   color:white
 }
-
+h1{
+  text-align:center;
+}
+.flex{
+  display:flex;
+}
+#pod_list{
+  width:100%
+}
 .grid {
   display: flex;
   flex-direction: row;
+  width: 71%;
+  margin: 0 auto;
+}
+.grid img{
+  width:200px;
+  height:200px;
+}
+.list-element{
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: #0f2e4e;
+  margin-bottom: 15px;
+  border: 2px solid #646464;
+  gap: 35px;
+}
+.list-element button{
+  margin-top: 15px;
+  background: #062647;
+  border: 2px solid #646464;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
 }
  

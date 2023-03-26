@@ -15,39 +15,35 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 
 	
-	/** Método para crear el HTML del Elemento Pokemon*/
-	const createItems = (items) => {
-		console.log('Creating items...');
-		const list = document.querySelector('#pod_list');
-		const newElement = document.createElement('div');
-		items?.forEach(item => {
-			const itemHtml = `
-				<div class="list-element">
-					<div>
-						<div>Title: ${item.title}</div>
-						<div>Date: ${item.date}</div>
-						<button>Detail</button>
-					</div>	
-					<div>
-						<img src="${item.url}">
-					</div>	
-				</div>
-			`;
+/** Método para crear el HTML del Elemento Pokemon*/
+const createItems = (items) => {
+	console.log('Creating items...');
+	const list = document.querySelector('#pod_list');
+	const newElement = document.createElement('div');
+	items?.forEach(item => {
+		const itemHtml = `
+			<div class="list-element flex">
+				<div>
+					<h2>${item.title}</h2>
+					<p>Desc: ${trimDescription(item.explanation)}</p>
+					<div>Date: ${item.date}</div>
+					<button>Detail</button>
+				</div>	
+				<div>
+					<img src="${item.url}">
+				</div>	
+			</div>
+		`;
 
-			newElement.innerHTML += itemHtml;
-		});
+		newElement.innerHTML += itemHtml;
+	});
 
-		list.appendChild(newElement);
+	list.appendChild(newElement);
+}
+
+const trimDescription = (desc) => {
+	if (desc.length > 250) {
+		return desc.substring(0, 250) + ' ...';
 	}
-
-// 	const getPokemonType = (types) => {
-// 		let pokeTypes = '';
-// 		types.forEach((element, index) => {
-// 			if (index === 0) { pokeTypes = element.type.name; }
-// 			else {
-// 				pokeTypes = pokeTypes + `, ${element.type.name}`;
-// 			}
-// 		});
-// 		return pokeTypes;
-// 	}
-
+	return desc;
+};
