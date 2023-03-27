@@ -3,10 +3,9 @@ html {
     box-sizing: border-box;
     font-size: 80%;
 }
-  
-*,
-*:before,
-*:after {
+
+ /* No tener en cuenta el tamaño de los bordes */
+*, *:before, *:after {
   -webkit-box-sizing: inherit;
   box-sizing: inherit;
 }
@@ -33,6 +32,7 @@ h1{
   width: 71%;
   margin: 0 auto;
   flex-direction: column;
+  align-items: flex-end;
 }
 .list-element img{
   width:200px;
@@ -63,9 +63,10 @@ h1{
   margin-bottom: 15px;
   border: 2px solid #646464;
 }
-
+/*Ocultar barra de busqueda hasta que carguen los datos*/
 #search{
   display:none;
+  width: 100%;
 }
 #search input{
   width: 100%;
@@ -76,4 +77,13 @@ h1{
   background: #3c4e61;
   border: 2px solid #062647;
   color: white;
+}
+#bt{
+  display: none;
+  margin-bottom: 20px;
+  background: #062647;
+  border: 2px solid #646464;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
 }

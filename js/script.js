@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	}
 	/* Método para hacer la petición a la API y obtener el json de resultados */
 	const getList = async () => {
-		const url = 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&start_date=2023-03-01&end_date=2023-03-27';
+		const url = 'https://api.nasa.gov/planetary/apod?api_key=eSrdcJqzrhfKIcvAYj29MEXKZFJGdDTLLn01sXnI&start_date=2023-03-01&end_date=2023-03-27';
 
 		const result = await fetch(url);
 		elementsList = await result.json();
@@ -17,10 +17,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	fetchList();
 });
 
-	
-/** Método para crear el HTML del Elemento Pokemon*/
 const createItems = (items) => {
-	console.log('Creating items...');
+	// console.log('Creating items...');
 	const list = document.querySelector('#pod_list');
 	list.innerHTML = '';
 	const newElement = document.createElement('div');
@@ -46,7 +44,8 @@ const createItems = (items) => {
 }
 
 const openDetail = (index) => {
-	console.log('Abrimos el detalle de: ', elementsList[index]);
+	// console.log('Abrimos el detalle de: ', elementsList[index]);
+	document.querySelector('#bt').style.display = 'block';
 	const list = document.querySelector('#pod_list');
 	list.innerHTML = '';
 	const detailsData = elementsList[index];
@@ -69,25 +68,22 @@ const openDetail = (index) => {
 
 const filterElements = () => {
 	let valor = document.querySelector('#search-input').value;
-	console.log('Estaos filtrando elementos: ', valor);
+	// console.log('Estaos filtrando elementos por el término: ', valor);
 	if (valor.length > 3) {
-		console.log('Filtramos por: ', valor);
+		// console.log('Filtramos por: ', valor);
 		const filteredList = elementsList.filter((element) => {
-			// debugger;
 			if (element.title.toLowerCase().includes(valor)) {
 				return element;
 			}
 		});
 		createItems(filteredList);
-		
-		
 	} else {
 		if (!valor.length) {
 			createItems(elementsList);
 		}
 	}
 };
-
+/*Cortamos descripción a partir de 250 carácteres para verla entera en OpenDetails*/
 const trimDescription = (desc) => {
 	if (desc.length > 250) {
 		return desc.substring(0, 250) + ' ...';
