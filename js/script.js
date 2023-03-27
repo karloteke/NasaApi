@@ -46,6 +46,7 @@ const createItems = (items) => {
 const openDetail = (index) => {
 	// console.log('Abrimos el detalle de: ', elementsList[index]);
 	document.querySelector('#bt').style.display = 'block';
+	document.querySelector('#search').style.display = 'none';
 	const list = document.querySelector('#pod_list');
 	list.innerHTML = '';
 	const detailsData = elementsList[index];
@@ -68,7 +69,7 @@ const openDetail = (index) => {
 
 const filterElements = () => {
 	let valor = document.querySelector('#search-input').value;
-	// console.log('Estaos filtrando elementos por el término: ', valor);
+	// console.log('Estamos filtrando elementos por el término: ', valor);
 	if (valor.length > 3) {
 		// console.log('Filtramos por: ', valor);
 		const filteredList = elementsList.filter((element) => {
@@ -89,4 +90,10 @@ const trimDescription = (desc) => {
 		return desc.substring(0, 250) + ' ...';
 	}
 	return desc;
+};
+
+const goBack = () => {
+	document.querySelector('#bt').style.display = 'none';	
+	document.querySelector('#search').style.display = 'block';
+	createItems(elementsList);
 };
