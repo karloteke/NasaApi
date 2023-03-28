@@ -19,7 +19,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
 const fillUrlParams = () => {
 	const today = new Date();
 	const dateDesde = new Date( new Date().setDate(new Date().getDate() - 30));
-	console.log(dateDesde);
 	const hasta = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDay();
 	const desde = dateDesde.getFullYear() + '-' + (dateDesde.getMonth() + 1) + '-' + dateDesde.getDay();
 	const url = `https://api.nasa.gov/planetary/apod?api_key=eSrdcJqzrhfKIcvAYj29MEXKZFJGdDTLLn01sXnI&start_date=${desde}&end_date=${hasta}`;
@@ -32,21 +31,22 @@ const createItems = (items) => {
 	list.innerHTML = '';
 	const newElement = document.createElement('div');
 	items?.forEach((item) => {
-		const itemHtml = `
-			<div class="list-element flex">
-				<div>
-					<h2>${item.title}</h2>
-					<p>Desc: ${trimDescription(item.explanation)}</p>
-					<div>Date: ${item.date}</div>
-					<a href="detail.html?date=${item.date}">Detail</a>
+		if (item.media_type === 'image') {
+			let itemHtml = `
+				<div class="list-element flex">
+					<div>
+						<h2>${item.title}</h2>
+						<p>Desc: ${trimDescription(item.explanation)}</p>
+						<div>Date: ${item.date}</div>
+						<a href="detail.html?date=${item.date}">Detail</a>
+					</div>
+					<div>
+						<img src="${item.url}">
+					</div>	
 				</div>
-				<div>
-					<img src="${item.url}">
-				</div>	
-			</div>
-		`;
-
-		newElement.innerHTML += itemHtml;
+			`;
+			newElement.innerHTML += itemHtml;
+		}
 	});
 
 	list.appendChild(newElement);
@@ -70,7 +70,7 @@ const filterElements = () => {
 	}
 };
 
-/*Cortamos descripción a partir de 250 carácteres para verla entera en OpenDetails*/
+/*Cortamos descripción a partir de 250 carácteres */
 const trimDescription = (desc) => {
 	if (desc.length > 250) {
 		return desc.substring(0, 250) + ' ...';

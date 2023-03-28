@@ -8,7 +8,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	const getDetail = async () => {
         let params = new URLSearchParams(document.location.search);
         let date = params.get("date"); 
-        console.log('Viene bien la fecha?: ', date);
         if (date) {
             const url = `https://api.nasa.gov/planetary/apod?api_key=eSrdcJqzrhfKIcvAYj29MEXKZFJGdDTLLn01sXnI&date=${date}`;
             const result = await fetch(url);
