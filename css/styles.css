@@ -47,13 +47,15 @@ h1{
   border: 2px solid #646464;
   gap: 35px;
 }
-.list-element button{
+.list-element a{
   margin-top: 15px;
   background: #062647;
   border: 2px solid #646464;
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
+  display: block;
+  width: 80px;
 }
 .list-detail{
   flex-direction: column;
@@ -65,7 +67,6 @@ h1{
 }
 /*Ocultar barra de busqueda hasta que carguen los datos*/
 #search{
-  display:none;
   width: 100%;
 }
 #search input{
@@ -77,13 +78,4 @@ h1{
   background: #3c4e61;
   border: 2px solid #062647;
   color: white;
-}
-#bt{
-  display: none;
-  margin-bottom: 20px;
-  background: #062647;
-  border: 2px solid #646464;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
 }
