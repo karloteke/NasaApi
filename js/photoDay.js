@@ -17,13 +17,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 
 const fillUrlParams = () => {
-	const today = new Date();
-	const dateDesde = new Date( new Date().setDate(new Date().getDate() - 30));
-	const hasta = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDay();
-	const desde = dateDesde.getFullYear() + '-' + (dateDesde.getMonth() + 1) + '-' + dateDesde.getDay();
-	const url = `https://api.nasa.gov/planetary/apod?api_key=eSrdcJqzrhfKIcvAYj29MEXKZFJGdDTLLn01sXnI&start_date=${desde}&end_date=${hasta}`;
+	const currentDate = new Date();
+	const thirtyDaysAgo = new Date();
+	thirtyDaysAgo.setDate(currentDate.getDate() - 30);
+
+	const startDate = thirtyDaysAgo.toISOString().substring(0, 10);
+	const endDate = currentDate.toISOString().substring(0, 10);
+  
+	const url = `https://api.nasa.gov/planetary/apod?api_key=eSrdcJqzrhfKIcvAYj29MEXKZFJGdDTLLn01sXnI&start_date=${startDate}&end_date=${endDate}`;
 	return url;
-}
+};
 
 const createItems = (items) => {
 	// console.log('Creating items...');
@@ -36,8 +39,8 @@ const createItems = (items) => {
 				<div class="list-element flex">
 					<div>
 						<h2>${item.title}</h2>
-						<p>Desc: ${trimDescription(item.explanation)}</p>
-						<div>Date: ${item.date}</div>
+						<p><strong>Description: </strong>${trimDescription(item.explanation)}</p>
+						<div><strong>Date: </strong>${item.date}</div>
 						<a href="detail.html?date=${item.date}">Detail</a>
 					</div>
 					<div>
@@ -55,7 +58,7 @@ const createItems = (items) => {
 const filterElements = () => {
 	let valor = document.querySelector('#search-input').value;
 	// console.log('Estamos filtrando elementos por el término: ', valor);
-	if (valor.length > 3) {
+	if (valor.length > 2) {
 		// console.log('Filtramos por: ', valor);
 		const filteredList = elementsList.filter((element) => {
 			if (element.title.toLowerCase().includes(valor)) {

@@ -29,8 +29,8 @@ const createDetail = (detailsData) => {
 			<h2>${detailsData.title}</h2>
 			<img src="${detailsData.url}">
 			<p>${detailsData.explanation}</p>
-			<div>Date: ${detailsData.date}</div>	
-			<div>Autor: ${detailsData.copyright ? detailsData.copyright : 'Not specified'}</div>	
+			<div><strong>Date: </strong>${detailsData.date}</div>	
+			<div><strong>Autor: </strong>${detailsData.copyright ? detailsData.copyright : 'Not specified'}</div>	
 		</div>
 	`;
 
