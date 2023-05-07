@@ -7,22 +7,17 @@
     <title>Photo of the day</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="css/styles.css" />
+	  <script src="js/photoDayDetail.js"></script>
   </head>
   <body>
     <nav>
-      <a class="active" href="#">Photo of the Day of the last 30 days</a>
+      <a href="index.html">Photo of the Day of the last 30 days</a>
       <a href="asteroids.html">Asteroids Near Earth today</a>
     </nav>
-    <section id="pod">
-      <h1 class="title-name">Photo of the Day of the last 30 days</h1>
-      <div class="grid">
-        <div id="search">
-          <input type="text" id="search-input" onkeyup="filterElements()" placeholder="Search here...">
-        </div>
+    <h1 class="title-name">Photo Detail</h1>
+    <div class="grid">
         <div id="pod_list"></div>
-      </div>
-    </section>
-    <script src="js/photoDay.js"></script>
+    </div>
   </body>
 </html>
 
