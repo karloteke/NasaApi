@@ -24,41 +24,56 @@ const fillUrlParams = () => {
 	const startDate = thirtyDaysAgo.toISOString().substring(0, 10);
 	const endDate = currentDate.toISOString().substring(0, 10);
   
-	const url = `https://api.nasa.gov/planetary/apod?api_key=eSrdcJqzrhfKIcvAYj29MEXKZFJGdDTLLn01sXnI&start_date=${startDate}&end_date=${endDate}`;
+	const url = `https://api.nasa.gov/planetary/apod?api_key=eSrdcJqzrhfKIcvAYj29MEXKZFJGdDTLLn01sXnI&start_date=${startDate}&end_date=${endDate}&thumbs=true`;
 	return url;
 };
 
 const createItems = (items) => {
-	// console.log('Creating items...');
 	const list = document.querySelector('#pod_list');
 	list.innerHTML = '';
 	const newElement = document.createElement('div');
 	items?.forEach((item) => {
-		if (item.media_type === 'image') {
-			let itemHtml = `
-				<div class="list-element flex">
-					<div>
-						<h2>${item.title}</h2>
-						<p><strong>Description: </strong>${trimDescription(item.explanation)}</p>
-						<div><strong>Date: </strong>${item.date}</div>
-						<a href="detail.html?date=${item.date}">Detail</a>
-					</div>
-					<div>
-						<img src="${item.url}">
-					</div>	
-				</div>
-			`;
-			newElement.innerHTML += itemHtml;
-		}
+	  if (item.media_type === 'image') {
+		let itemHtml = `
+		  <div class="list-element flex">
+			<div>
+			  <h2>${item.title}</h2>
+			  <p><strong>Description: </strong>${trimDescription(item.explanation)}</p>
+			  <div><strong>Date: </strong>${item.date}</div>
+			  <a href="detail.html?date=${item.date}">Detail</a>
+			</div>
+			<div>
+			  <img src="${item.url}">
+			</div>  
+		  </div>
+		`;
+		newElement.innerHTML += itemHtml;
+	  } else if (item.media_type === 'video') {
+		let itemHtml = `
+		  <div class="list-element flex">
+			<div>
+			  <h2>${item.title}</h2>
+			  <p><strong>Description: </strong>${trimDescription(item.explanation)}</p>
+			  <div><strong>Date: </strong>${item.date}</div>
+			  <a href="detail.html?date=${item.date}">Detail</a>
+			</div>
+			<div>
+			  <img src="${item.thumbnail_url}">
+			</div>  
+		  </div>
+		`;
+		newElement.innerHTML += itemHtml;
+	  }
 	});
-
+  
 	list.appendChild(newElement);
-}
+  }
+  
 
 const filterElements = () => {
 	let valor = document.querySelector('#search-input').value;
 	// console.log('Estamos filtrando elementos por el término: ', valor);
-	if (valor.length > 2) {
+	if (valor.length > 3) {
 		// console.log('Filtramos por: ', valor);
 		const filteredList = elementsList.filter((element) => {
 			if (element.title.toLowerCase().includes(valor)) {
